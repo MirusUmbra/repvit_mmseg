@@ -17,7 +17,7 @@ resize_ratio_range = (0.5, 2.0)
 crop_size = (512, 512)
 batch_size = 8
 num_workers = 6
-max_iters = 30000
+max_iters = 20000
 interval = 500
 
 train_pipeline = [
@@ -85,7 +85,7 @@ num_classes = 2
 # lr = 0.00005
 # stage 2
 # pretrain_ckpt = 'log/fpn_repvit_m1_1_human_stage2/latest.pth'
-lr = 0.0001
+lr = 0.000025
 
 model = dict(
     type='EncoderDecoder',

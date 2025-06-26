@@ -23,9 +23,9 @@ from mmseg.utils import collect_env, get_root_logger, get_device
 import mmseg.models.backbones.repvit
 from mmseg.datasets.pipelines.align_resize import AlignResize
 
-config = 'configs/repvit/fpn_repvit_m1_1_human.py'
-out_dir = 'log/fpn_repvit_m1_1_human_stage1'
-resume = 'log/fpn_repvit_m1_1_human_stage1/latest.pth'
+config = 'configs/femtonet/femtonet.py'
+out_dir = 'log/fempvit_m1_1_human_stage2'
+resume = 'log/fempvit_m1_1_human_stage2/latest.pth'
 gpu_num = 1
 gpu_ids = [0]
 

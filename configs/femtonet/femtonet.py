@@ -15,9 +15,9 @@ img_norm_cfg = dict(
 resize_range = (512, 2048)
 resize_ratio_range = (0.5, 2.0)
 crop_size = (512, 512)
-batch_size = 8
+batch_size = 12
 num_workers = 6
-max_iters = 20000
+max_iters = 200000
 interval = 100
 
 train_pipeline = [
@@ -82,7 +82,7 @@ num_classes = 2
 # pretrain_ckpt = 'pretrain/femtodet/femtodet_0stage/best_bbox_mAP_epoch_300.pth'
 # lr = 0.0001
 pretrain_ckpt = 'log/fempvit_m1_1_human/latest.pth' # stage2
-lr = 0.00005
+lr = 0.00001
 
 model = dict(
     type='EncoderDecoder',
@@ -119,7 +119,7 @@ model = dict(
             type='CrossEntropyLoss',
             use_sigmoid=False,
             loss_weight=1.0,
-            class_weight=[0.5, 2.0]  # background, human
+            class_weight=[1.0, 1.5]  # background, human
         )
     ),
     train_cfg=dict(),
@@ -136,3 +136,9 @@ lr_config = dict(policy='poly', power=0.9, min_lr=1e-6, by_epoch=False)
 runner = dict(type='IterBasedRunner', max_iters=max_iters // gpu_multiples)
 checkpoint_config = dict(by_epoch=False, interval=interval // gpu_multiples)
 evaluation = dict(interval=interval // gpu_multiples, metric='mIoU')
+
+# log
+default_hooks = dict(
+    logger=dict(type='LoggerHook'),
+    tensorboard=dict(type='TensorboardVisBackend', log_dir='./log_tensorboard'),
+)
